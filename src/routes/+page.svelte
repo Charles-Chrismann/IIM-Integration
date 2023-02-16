@@ -1,10 +1,27 @@
 <script>
-    import Menu from '$lib/Menu.svelte';
-    import Header from '$lib/Header.svelte';
-    let name = "SvelteKit"
+    import { onMount } from 'svelte';
+
+    async function getUser() {
+		const res = await fetch(`/api`);
+		const user = await res.json();
+
+		if (res.ok) {
+			return user;
+		} else {
+			throw new Error(user);
+		}
+	}
+
+    let promise;
+    onMount(async () => {
+        promise = getUser()
+	});
 </script>
-
-
-
-<h1>Welcome to {name}</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+  
+{#await promise}
+<p>Waiting 4 user</p>
+{:then user}
+<p>{user}</p>
+{:catch error}
+<p style="color: red">{error.message}</p>
+{/await}

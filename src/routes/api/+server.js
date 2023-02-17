@@ -3,6 +3,7 @@ function resolveAfter2Seconds() {
     setTimeout(() => {
       resolve(new Response(JSON.stringify({
         username: 'Roger',
+        src: '/images/user/pp.png',
         totalBalanceBTC: 0.97894652,
         totalBalanceDlr: 40123.56,
         recentsLite: [
@@ -81,6 +82,7 @@ function resolveAfter2Seconds() {
             src: '/images/cryptos/bitcoin_wt.svg',
             value: '121,6450.45',
             min: 'BTC',
+            style: 'background: linear-gradient(98.73deg, #611D8D 35.75%, #2F7EC1 73.26%);'
           },
           {
             id: 1,
@@ -88,6 +90,7 @@ function resolveAfter2Seconds() {
             src: '/images/cryptos/ethereum.svg',
             value: '143,850.45',
             min: 'ETH',
+            style: 'background: linear-gradient(99.56deg, #FAFF00 35.82%, #29ABE2 64.75%, rgba(255, 255, 255, 0.7) 91.33%);'
           },
         ]
 
@@ -97,7 +100,7 @@ function resolveAfter2Seconds() {
         }
       }
       ));
-    }, 2000);
+    }, 10);
   });
 }
 

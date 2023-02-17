@@ -2,6 +2,7 @@
   import Menu from '$lib/Menu.svelte';
   import Header from '$lib/Header.svelte';
   import TransactionLite from '$lib/TransactionLite.svelte';
+  import Asset from '$lib/Asset.svelte';
 
   async function getUser() {
 		const res = await fetch(`/api`);
@@ -21,18 +22,12 @@
     <Header />
     <slot />
     <aside>
-      alo
-        <div class="recents">
+      <div class="recents">
+          <h4>Recent Transactions</h4>
           {#await getUser()}
           <p>Waiting 4 user</p>
           {:then user}
           <ul>
-            oe
-            {JSON.stringify(user)}
-            {user.username}
-            <!-- {user['username']} -->
-            <!-- {JSON.parse(JSON.stringify(user)).username} -->
-            <!-- {JSON.parse(user).username} -->
             {#each user.recentsLite as transaction (transaction.id)}
               <TransactionLite {...transaction} />
             {/each}
@@ -40,8 +35,21 @@
           {:catch error}
           <p style="color: red">{error.message}</p>
           {/await}
-        </div>
-        <div class="assets"></div>
+      </div>
+      <div class="assets">
+        <h4>Assets</h4>
+          {#await getUser()}
+          <p>Waiting 4 user</p>
+          {:then user}
+          <ul>
+            {#each user.assets as asset (asset.id)}
+              <Asset {...asset} />
+            {/each}
+          </ul>
+          {:catch error}
+          <p style="color: red">{error.message}</p>
+          {/await}
+      </div>
     </aside>
 </div>
 
@@ -58,11 +66,34 @@
     grid-template-areas: "header header" "main aside";
   }
   @media screen and (min-width: 1024px) {
-    margin-left: 360px;
+    margin-left: 240px;
+    grid-template-columns: 1fr 360px;
   }
 
   aside {
     grid-area: aside;
+    padding: 0 20px;
+    .recents {
+      h4 {
+        margin-bottom: 42px;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 38px;
+      }
+    }
+    .assets {
+      h4 {
+        margin-bottom: 1rem;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+    }
   }
 }
 </style>

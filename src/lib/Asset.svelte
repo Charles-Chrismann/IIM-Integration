@@ -4,7 +4,6 @@
     export let name
     export let value;
     export let min;
-    export let style;
 </script>
 
 <li 
@@ -38,5 +37,9 @@ li {
 .second {
     color: black;
     background: linear-gradient(99.56deg, #FAFF00 35.82%, #29ABE2 64.75%, rgba(255, 255, 255, 0.7) 91.33%);
+
+    p, span {
+        color: black;
+    }
 }
 </style>

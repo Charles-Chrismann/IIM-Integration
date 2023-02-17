@@ -5,7 +5,7 @@
 
 <li>
     <a href="#">
-        <img src={src} alt="" height="32" width="32">
+        <img {src} alt="" height="32" width="32">
         <span>{name}</span>
     </a>
 </li>
@@ -16,8 +16,10 @@ li {
     height: 48px;
     display: flex;
     align-items: center;
-
+    padding-left: 44px;
+    
     a {
+        gap: 10px;
         display: flex;
         align-items: center;
     }

@@ -1,6 +1,7 @@
 <script>
     import Chart from 'chart.js/auto';
-    import { onMount, tick } from 'svelte';
+    import { onMount } from 'svelte';
+    import TransactionLarge from '../lib/TransactionLarge.svelte';
 
 	let totalBalanceBTC = 0.97894652;
 	let totalBalanceDlr = 40123.56;
@@ -11,23 +12,29 @@
 	function renderChart() {
 		if(chart) chart.destroy()
 		chart = new Chart(ctx, {
-			type: 'bar',
+			type: 'line',
 			data: {
-			labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-			datasets: [{
-				label: '# of Votes',
-				data: [12, 19, 3, 5, 2, 3],
-				borderWidth: 1
-			}]
-			},
-			options: {
-			scales: {
-				y: {
-				beginAtZero: true
+				labels: ['5 nov', '6 nov', '7 nov', '8 nov', '9 nov', '10 nov', '11 nov', '12 nov', '13 nov',  '14 nov'],
+				datasets: [{
+					label: 'My First Dataset',
+					data: [100, 300, 400, 250, 100, 500, 600, 500, 600, 700],
+					fill: false,
+					borderColor: 'rgb(75, 192, 192)',
+					tension: 0.1
+				}]
 				}
-			}
-			}
 		});
+	}
+
+	async function getUser() {
+		const res = await fetch(`/api`);
+		const user = await res.json();
+
+		if (res.ok) {
+			return user;
+		} else {
+			throw new Error(user);
+		}
 	}
 
 	onMount(async () => {
@@ -57,7 +64,19 @@
 		<canvas bind:this={ctx}></canvas>
 	</div>
 	<div class="transactionsLarge">
+		<h4>Recent Transactions</h4>
 
+		{#await getUser()}
+          <p>Waiting 4 user</p>
+          {:then user}
+          <ul>
+            {#each user.recentsLarge as transaction (transaction.id)}
+              <TransactionLarge {...transaction} />
+            {/each}
+          </ul>
+          {:catch error}
+          <p style="color: red">{error.message}</p>
+          {/await}
 	</div>
 </main>
 
@@ -88,6 +107,22 @@ main {
 					border-radius: 0.5rem;
 					color: #000000;
 				}
+			}
+		}
+
+		ul {
+			display: flex;
+			gap: 5px;
+			background: #292727;
+			padding: 0.5rem 1rem;
+			border-radius: 17px;
+			align-items: center;
+			justify-content: space-around;
+
+			& > li:first-child {
+				background: #0D0C0C;
+				padding: 4px;
+				border-radius: 999px;
 			}
 		}
 	}

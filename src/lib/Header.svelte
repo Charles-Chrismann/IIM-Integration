@@ -39,13 +39,21 @@ header {
     grid-template-areas: "header header" "main aside";
   }
 
+  .main {
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+      padding-right: 5%;
+      padding-left: 5%;
+    }
+  }
+
   .inputBx {
     position: relative;
     
 
     input {
       border-radius: 16px;
-      width: 476px;
+      width: 20vw;
       height: 50px;
       padding-left: 5rem;
       color: #000000;
@@ -66,6 +74,9 @@ header {
   }
 
   .settings {
+    @media screen and (max-width: 1024px) {
+      display: none;
+    }
     width: 360px;
     display: flex;
     justify-content: space-between;

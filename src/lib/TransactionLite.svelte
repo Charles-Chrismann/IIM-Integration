@@ -1,6 +1,6 @@
 <script>
   export let name;
-  export let url;
+  export let src;
   export let state;
   export let value;
   export let isGoodNews;
@@ -8,7 +8,7 @@
 </script>
 
 <li>
-  <img src={url} alt={url}>
+  <img {src} alt={src}>
   <div>
     <p>{name}</p>
     <p>{state}</p>

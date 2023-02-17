@@ -9,7 +9,7 @@ function resolveAfter2Seconds() {
           {
             id: 5,
             name: 'Usdt',
-            url: '/images/cryptos/usdt.svg',
+            src: '/images/cryptos/usdt.svg',
             state: 'Received',
             value: '+$3,546',
             isGoodNews: true,
@@ -18,7 +18,7 @@ function resolveAfter2Seconds() {
           {
             id: 4,
             name: 'BNB',
-            url: '/images/cryptos/bnb.svg',
+            src: '/images/cryptos/bnb.svg',
             state: 'Buy',
             value: '+ 0.7546',
             isGoodNews: true,
@@ -27,7 +27,7 @@ function resolveAfter2Seconds() {
           {
             id: 3,
             name: 'Lite Coin',
-            url: '/images/cryptos/litecoin.svg',
+            src: '/images/cryptos/litecoin.svg',
             state: 'Withdrawal',
             isGoodNews: false,
             value: '+ 0.7546',
@@ -36,7 +36,7 @@ function resolveAfter2Seconds() {
           {
             id: 2,
             name: 'Bitcoin',
-            url: '/images/cryptos/bitcoin_ob.svg',
+            src: '/images/cryptos/bitcoin_ob.svg',
             state: 'Received',
             value: '+ 2.7546',
             isGoodNews: true,
@@ -45,7 +45,7 @@ function resolveAfter2Seconds() {
           {
             id: 1,
             name: 'Ethereum',
-            url: '/images/cryptos/ethereum.svg',
+            src: '/images/cryptos/ethereum.svg',
             state: 'Received',
             value: '+ 1.646',
             isGoodNews: true,
@@ -56,20 +56,38 @@ function resolveAfter2Seconds() {
           {
             id: 2,
             name: 'Bitcoin',
-            url: 'bitcoin_ot',
+            min: 'BTC',
+            src: 'bitcoin_ot',
             marketCap: '$40,243.70',
             change24h: '+1,56',
             isGoodNews: true,
-            curve: ''
+            curve: '/images/curves/curve_b.svg'
           },
           {
             id: 1,
             name: 'Ethereum',
-            url: 'ethereum_w',
+            min: 'ETH',
+            src: 'ethereum_w',
             marketCap: '$40,243.70',
             change24h: '+1,56',
             isGoodNews: true,
-            curve: ''
+            curve: '/images/curves/curve_e.svg'
+          },
+        ],
+        assets: [
+          {
+            id: 2,
+            name: 'Bitcoin',
+            src: '/images/cryptos/bitcoin_wt.svg',
+            value: '121,6450.45',
+            min: 'BTC',
+          },
+          {
+            id: 1,
+            name: 'Ethereum',
+            src: '/images/cryptos/ethereum.svg',
+            value: '143,850.45',
+            min: 'ETH',
           },
         ]
 

@@ -1,12 +1,12 @@
 <script>
   import Menu from '$lib/Menu.svelte';
   import Header from '$lib/Header.svelte';
-
-  import { onMount } from 'svelte';
+  import TransactionLite from '$lib/TransactionLite.svelte';
 
   async function getUser() {
 		const res = await fetch(`/api`);
 		const user = await res.json();
+    console.log(user)
 
 		if (res.ok) {
 			return user;
@@ -14,11 +14,6 @@
 			throw new Error(user);
 		}
 	}
-
-  let promise;
-  onMount(async () => {
-    promise = getUser()
-	});
 </script>
 
 <div class="App">
@@ -28,10 +23,20 @@
     <aside>
       alo
         <div class="recents">
-          {#await promise}
+          {#await getUser()}
           <p>Waiting 4 user</p>
           {:then user}
-          <p>{user}</p>
+          <ul>
+            oe
+            {JSON.stringify(user)}
+            {user.username}
+            <!-- {user['username']} -->
+            <!-- {JSON.parse(JSON.stringify(user)).username} -->
+            <!-- {JSON.parse(user).username} -->
+            {#each user.recentsLite as transaction (transaction.id)}
+              <TransactionLite {...transaction} />
+            {/each}
+          </ul>
           {:catch error}
           <p style="color: red">{error.message}</p>
           {/await}
@@ -54,6 +59,10 @@
   }
   @media screen and (min-width: 1024px) {
     margin-left: 360px;
+  }
+
+  aside {
+    grid-area: aside;
   }
 }
 </style>

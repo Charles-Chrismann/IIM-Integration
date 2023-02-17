@@ -17,11 +17,19 @@
         promise = getUser()
 	});
 </script>
-  
-{#await promise}
-<p>Waiting 4 user</p>
-{:then user}
-<p>{user}</p>
-{:catch error}
-<p style="color: red">{error.message}</p>
-{/await}
+
+<main>
+	{#await promise}
+	<p>Waiting 4 user</p>
+	{:then user}
+	<p>{user}</p>
+	{:catch error}
+	<p style="color: red">{error.message}</p>
+	{/await}
+</main>
+
+<style>
+main {
+	grid-area: main;
+}
+</style>
